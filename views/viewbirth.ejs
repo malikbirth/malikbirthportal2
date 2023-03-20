@@ -1,0 +1,1085 @@
+
+
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hi" lang="hi">
+
+
+
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="title" content="Civil Registration System">
+  <title>Civil Registration System</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" media="screen" href="/style.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="/default.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="/main.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="/jquery.ui.all.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="/jquery-ui-1.10.0.custom.css">
+  
+  <script language="JavaScript">
+  
+  </script>
+  <script>
+    document.onkeydown = function (e) {
+      if (event.keyCode == 123) {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+      }
+      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+      }
+    }
+  </script>
+ 
+
+  
+
+  <!--xml:lang="en" lang="en"-->
+  <meta http-equiv="Content-Language" content="hi">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+  <script type="text/javascript">
+    function preventBack() {
+      window.history.forward();
+    }
+
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+//    window.history.forward(-1);
+  </script>
+
+</head>
+
+<body>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+
+
+    <tr
+      style="padding: 0px !important; margin: 0px !important; line-height: 0px !important; float: left !important; height: 0px !important;">
+      <td>
+        <style>
+          .s-menu {
+            visibility: hidden;
+            position: absolute;
+            right: -113px;
+            margin-top: -25px;
+            padding-left: 0px;
+          }
+        </style>
+
+
+
+      
+
+      </td>
+    </tr>
+    <tr>
+      <td class="header-top-strip">
+        <div id="head">
+          <div class="logo">
+            <a href="/web/index.php/"><img alt="" title="" border="0" width="297" height="125"
+                src="/logo-top.jpg"></a>
+          </div>
+          <div style="position: absolute; right: 20px; top: 20px;">
+          </div>
+
+
+          <div style="position: absolute; right: 0px; top: 85px;">
+            <ul id="sddm" style="margin:11px 1px 0px 0px !important;">
+              <li><a href="/web/index.php/">Home</a></li>
+
+
+
+              <!--Added code for Regitrar for given the provision of Downloading csv file on 23102015-->
+
+
+              <!--End code-->
+
+
+
+
+              <li><span>Master</span></li>
+
+
+              <li><span>User Management</span></li>
+
+
+
+              <!--Added code by ALi for Payment Seprate Modules-->
+
+
+              <!--End code-->
+
+
+              <li><span>Birth</span></li>
+              <li><span>Death</span></li>
+              <li><span>Still Birth</span></li>
+
+              <li><span>Reports</span></li>
+
+              <li><a style="border:none" href="/web/index.php/auth/Logout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>
+   
+
+
+
+    <!--birth start-->
+    <style>
+      .fixed_modal {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 99;
+        display: none;
+      }
+
+      .fixed_modal1 {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 99;
+        display: none;
+      }
+    </style>
+    <div class="fixed_modal">
+      <div class="fixed_inner" style="background-color:white; padding:15px; width:200px; margin: 230px 0px 0px 548px; ">
+        <p><b>Birth Reporting</b> <a href="javascript:void(0)" class="closedeathpopup" style="float: right;
+    font-size: 17px;
+    font-family: cursive; text-decoration:none; color: red;"><b>X</b></a></p>
+        <form method="post" action="" onsubmit="return false;">
+          <p><strong>From</strong></p>
+          <p><input type="text" name="datefrom" autocomplete="off" id="datepicker" value="" style="padding:5px;"></p>
+          <p><strong>To</strong>
+          <p>
+          <p><input type="text" name="dateto" autocomplete="off" id="datepicker1" value="" style="padding:5px;"></p>
+          <p><input type="button" onclick="Export_to_Excel_box_birth();" class="btn" name="submit" value="Export"
+              style="width: 70px;"></p>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="fixed_modal1">
+      <div class="fixed_inner"
+        style="background-color:white; padding:15px; width:200px;     margin: 230px 0px 0px 548px; ">
+        <p><b>Death Reporting</b> <a href="javascript:void(0)" class="closedeathpopup" style="float: right;
+    font-size: 17px;
+    font-family: cursive; text-decoration:none; color: red;"><b>X</b></a></p>
+        <form method="post" action="" onsubmit="return false">
+          <p><strong>From</strong></p>
+          <p><input type="text" name="datefrom" id="datepicker2" value="" autocomplete="off" style="padding:5px;"></p>
+          <p><strong>To</strong>
+          <p>
+          <p><input type="text" name="dateto" autocomplete="off" id="datepicker3" value="" style="padding:5px;"></p>
+          <p><input type="button" onclick="Export_to_Excel_box_death();" class="btn" name="submit" value="Export"
+              style="width: 70px;"></p>
+        </form>
+      </div>
+    </div>
+    <!-- birth end-->
+
+    <tr>
+      <td valign="middle" class="welcome-strip-bg" style="border: none !important;">
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="96%">
+          <tbody>
+            <tr>
+              <td align="left" width="46%" class="welcome-clock">
+                <div class="datetime">
+                  <span id="live_date"></span>
+                  <span id="live_clock"></span>
+                </div>
+
+                
+              </td>
+              <td class="welcome-clock" colspan="2" align="right">
+                <label class="welcome-welcome">WELCOME&nbsp;:&nbsp;</label>
+                <label class="welcome-user-name">&nbsp;()
+                  <!-- <span style="font-weight:normal;">Registration Unit No :</span>  -->
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
+          <tbody>
+            <tr>
+              <td align="left" width="46%">
+                <div id="breadcrumbs" class="masterBreadCrumbs">
+                  <span class="breadCrumbSpan1">You are here:</span>
+                  <span class="breadCrumbSpan2">
+
+                    <a href="/web/index.php/">Home</a>
+                    &raquo; <strong>Birth</strong>
+                    &raquo; <a href="/web/index.php/birth/birthSearchAll">Birth Search</a>
+                    &raquo; <strong>Birth Cert.</strong>
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <style>
+      #sddm {
+        display: none;
+      }
+
+      .welcome-welcome {
+        display: none;
+      }
+
+      .welcome-user-name {
+        display: none;
+      }
+
+      .breadCrumbSpan1 {
+        display: none;
+      }
+
+      .breadCrumbSpan2 {
+        display: none;
+      }
+
+      .header-top-strip {
+        display: none;
+      }
+
+      .masterBreadCrumbs {
+        display: none;
+      }
+
+      .welcome-strip-bg {
+        display: none;
+      }
+    </style>
+
+    <style type="text/css">
+      .certificate-title {
+        color: #000000;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .lable-text {
+        color: #000000;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .normal-text {
+        color: #000000;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: uppercase;
+      }
+      .btn {
+        background-color: #068AC5;
+      }
+      #x {
+        background-image: url('/bg.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 500px;
+        
+      }
+      #printCertificationForm{
+        backdrop-filter: blur(4px);
+      }
+    </style>
+
+    <tr>
+      <td align="center">
+        <form action="" name="frmBirthCertificate" id="frmBirthCertificate" class="print">
+
+
+
+          <table border="0" cellpadding="0" cellspacing="0" width="96%">
+            <tbody>
+              <tr>
+                <td class="form-title" align="center" height="32" style="background:#A3EAFE !important;">&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="form-content-bg" align="center">
+
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody>
+                      <tr>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td align="center" valign="top" id="x">
+                          <table id="printCertificationForm">
+                            <tr>
+                              <td>
+                                <table class="certificate-border-normal" border="0" cellpadding="0" cellspacing="0"
+                                  width="800">
+                                  <tbody>
+                                    <tr>
+                                      <td colspan="3" height="3"></td>
+                                    </tr>
+                                    <tr>
+                                      <td>&nbsp;</td>
+                                      <td>
+                                        <table class="certificate-border-bold" border="0" cellpadding="0"
+                                          cellspacing="0" width="831">
+                                          <tbody>
+                                            <tr>
+                                              <td valign="top" width="588">
+                                                <table class="certificate-border-bold" border="0" cellpadding="0"
+                                                  cellspacing="0" width="831" style="text-transform:uppercase">
+                                                  <tbody>
+
+                                                    <tr>
+                                                      <td align="center" valign="top" width="10">&nbsp;</td>
+                                                      <td align="center" valign="top" width="20">&nbsp;</td>
+                                                      <td align="center" valign="top" width="76">&nbsp;</td>
+                                                      <td align="center" valign="top" width="20">&nbsp;</td>
+                                                      <td align="center" valign="top" width="10">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">
+                                                        <img width="58" height="70" src="/emb-forms.gif">
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td rowspan="9" align="center" valign="top">
+                                                      <table>
+                                                          <tr>
+                                                            <td class="text-line-height normal-text" valign="Bottom">
+
+                                                              <span lang="hi">
+                                                                सं.</span>&nbsp;1 <br>
+
+                                                            </td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td class="text-line-height normal-text" valign="Bottom">
+                                                              No.&nbsp;1</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td>&nbsp;</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td>
+                                                              <div style="border: 1px solid black; margin-top: -14px;">
+                                                                <img width="73" height="63" margin-top="5px"
+                                                                  src="data:image/jpeg;base64,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">
+                                                              </div>
+                                                            </td>
+                                                          </tr>
+                                                        </table>
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td class="text-line-height normal-text" rowspan="9"
+                                                        align="center" valign=" middle">
+                                                        <span lang="hi">
+                                                          प्रपत्र-5</span><br>
+                                                        Form-5<br>
+                                                        <img src="data:image/png;base64,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" id="stamp"
+                                                          style="width: 73px;  height: 63px;  margin-top: 5px;">
+
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td class="text-line-height normal-text" align="center"
+                                                        valign="top" class="lable-text">
+
+
+                                                        <span lang="hi">
+                                                  उत्तर प्रदेश सरकार                                                        </span>
+                                                        <br>
+
+
+
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+
+                                                      <td align="center" valign="top" class="lable-text">
+                                                        GOVERNMENT OF UTTAR PRADESH </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top"></td>
+                                                      <td align="center" valign="top"></td>
+                                                      <td align="center" valign="top"></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">
+
+
+                                                        <span lang="hi">
+                                                          योजना, आर्थिक एवं सांख्यिकी                                                        </span> <br>
+                                                          DEPARTMENT OF PLANNING, ECONOMICS & STATISTICS                                                      </td>
+                                                      <td align="center" valign="top" class="lable-text"></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top"></td>
+                                                      <td align="center" valign="top"></td>
+                                                      <td align="center" valign="top"></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top"></td>
+                                                      <td align="center" valign="top"></td>
+                                                      <td align="center" valign="top"></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (start)-->
+                                                      <td align="center" valign="top"
+                                                        class="text-line-height lable-text">
+                                                        <span lang="hi">
+                                                            जिला अस्पताल (पुरुष) कुशीनगर </span><br>    DISTRICT HOSPITAL (MALE) KUSHINAGAR                                                      </td>
+                                                      <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (end)-->
+                                                      <td align="center" valign="top">&nbsp;</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="normal-text"></td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+
+
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="certificate-title">
+                                                        <span lang="hi">
+                                                            जन्म प्रमाण-पत्र</span> <br>
+                                                        BIRTH CERTIFICATE
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td colspan="3" align="justify" valign="top"
+                                                        class=" text-line-height normal-text">
+                                                        <span lang="hi">   (जन्म मृत्यु रजिस्ट्री करण अधिनियम, 1969 की धारा 12/17 तथा उत्तर प्रदेश जन्म मृत्यु रजिस्ट्री करण नियम, 1999 के नियम 8/13 के अंतर्गत जारी किया गया)<br>
+                                                        </span>
+
+
+
+
+
+
+
+
+
+
+
+                                                        <!--Only Roman Language-->
+                                                         (ISSUED UNDER SECTION 12/17 OF THE REGISTRATION OF BIRTHS & DEATHS ACT, 1969 AND RULE 8/13 OF THE UTTAR PRADESH REGISTRATION  OF BIRTHS & DEATHS RULES 1999)
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td colspan="3" align="justify" valign="top"
+                                                        class="text-line-height normal-text">
+                                                        <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (start)-->
+
+                                                        <span lang="hi">
+                                                          यह प्रमाणित किया जाता है निम्नलिखित सूचना जन्म के मूल अभिलेख से ली गई है जो कि जिला अस्पताल (पुरुष) कुशीनगर तहसील कुशीनगर जिला कुशीनगर राज्य संघ प्रदेश उत्तर प्रदेश, भारत के रजिस्टर में उल्लिखित है।                                                        </span>
+                                                        <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (end)-->
+
+
+
+
+
+
+
+
+
+
+
+                                                        <br>
+
+                                                        <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (start)-->
+
+                                                         THIS IS TO CERTIFY THAT THE FOLLOWING INFORMATION HAS BEEN TAKEN FROM THE ORIGINAL RECORD OF BIRTH WHICH IS THE REGISTER  FOR DISTRICT HOSPITAL (MALE) KUSHINAGAR OF TAHSIL/BLOCK OF DISTRICT KUSHINAGAR OF STATE/UNION TERRITORY UTTAR PRADESH, INDIA.                                                        <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (end)-->
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td colspan="3" align="center" valign="top">
+                                                        <table width="100%">
+                                                          <tr>
+                                                            <td width="40%" align="left"
+                                                              class="text-line-height normal-text">
+                                                              <span lang="hi">
+                                                                   नाम </span>/
+                                                              Name:
+
+                                                              <span lang='hi'>
+                                                                <%= name %>                                                             </span>
+                                                            </td>
+                                                            <td width="20%"></td>
+                                                            <td width="40%" class="text-line-height normal-text"
+                                                              style="text-align: left">
+
+                                                              <span lang="hi">
+                                                                   लिंग </span>/
+                                                              Sex:
+
+                                                              <span lang="hi">
+                                                                <%= gen %>                                                              </span>
+
+                                                            </td>
+                                                          </tr>
+                                                          
+                                                          
+
+                                                          <!-- ---------------------------------------------------------------------------------  -->
+                                                          
+                                                          
+                                                                                                                   <!-- Start of Block to Print Child UID in Certificate -  26-Dec-2014
+                                                          <!-- ---------------------------------------------------------------------------------  -->
+
+                                                          <tr>
+                                                            <td align="left" class="text-line-height normal-text"
+                                                              valign="top" style="padding-top: 10px">
+
+
+                                                              <span lang="hi">   जन्म तिथि</span>/
+                                                              Date of Birth:
+                                                              <br>
+                                                              <%= dob %> <br>
+                                                              <%= dob_en %>                                                           </td>
+                                                            <td></td>
+                                                            <td class="text-line-height normal-text"
+                                                              style="padding-top: 10px; text-align: left">
+
+                                                              <span lang="hi">
+                                                                 जन्म स्थान</span>/
+                                                              Place of birth:
+
+                                                              <br>
+
+
+                                                              <span lang="hi">
+
+
+
+                                                                <!--IF ADDRESS OUT OF INDIA-->
+                                                                <%= pob %>                                                            </span>
+                                                            </td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="left" class="text-line-height normal-text"
+                                                              style="padding-top: 20px" valign="top">
+                                                              <span lang="hi">
+                                                                माता का नाम / </span>
+                                                              Name of Mother: <br>
+                                                              <span lang='hi'>
+                                                                <%= mo_name %>                                                              </span>
+                                                              <!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- Start of Block to Print Mother's UID in Certificate -  26-Dec-2014
+															<!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- End of Block to Print Mother's UID in Certificate -  26-Dec-2014
+															<!-- ---------------------------------------------------------------------------------  -->
+
+                                                              <!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- Start of Block to Print Mother's Nationality in Certificate -  27052015
+															<!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- End of Block to Print Mother's Nationality in Certificate -  27052015
+															<!-- ---------------------------------------------------------------------------------  -->
+                                                            </td>
+                                                            <td></td>
+                                                            <td align="left" class="text-line-height normal-text"
+                                                              style="padding-top: 20px; text-align: left" valign="top">
+                                                              <span lang="hi">
+                                                                 पिता का नाम </span>/
+                                                              Name of Father : <br>
+                                                              <span lang='hi'>
+                                                              <%= fa_name %>                                                              </span>
+                                                              <!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- Start of Block to Print Father's UID in Certificate -  26-Dec-2014
+															<!-- ---------------------------------------------------------------------------------  -->
+
+ <tr>
+                                                            <td align="left" class="text-line-height normal-text"
+                                                              style="padding-top: 10px" valign="top">
+
+                                                              <span lang="hi">
+                                                             आधार संख्या </span> /
+
+                                                             MOTHER'S AADHAR:
+
+                                                              <br>
+                                                              <!--Outside India Address-->
+
+
+                                                              <!--inside India Address-->
+
+                                                              <span lang="hi">
+                                                                           &nbsp; 
+                                                                           </span>
+
+
+
+
+                                                              <!-- This is the block to the get Specifice Langguage. Written by Pawan Kumar -->
+
+                                                            
+
+
+                                                              <!-- This is the block to the get Specifice Langguage. Written by Pawan Kumar --> 
+
+                                                            </td>
+                                                            <td></td>
+                                                            <td class="text-line-height normal-text"
+                                                              style="padding-top: 5px; " valign="top">
+                                                              <span lang="hi">
+                                                 आधार संख्या</span> /
+                                                             FATHER'S AADHAR
+                                                              <br>
+                                                              <!--Outside Inida Address-->
+
+                                                              <!--Inside India Address-->
+
+
+                                                              <span lang="hi">
+                                                                             &nbsp; 
+                                                                           </span>
+
+                                                         
+                                                              <!--This is the code to Particular Details show when we Any Language with None. Written ON 11-Feb-15 -->
+
+
+
+                                                              <!--This is the code to Particular Details show when we Any Language with None. Written ON 11-Feb-15 -->
+
+
+
+                                                            </td>
+                                                          </tr>
+                                                              <!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- End  of Block to Print Father's UID in Certificate -  26-Dec-2014
+															<!-- ---------------------------------------------------------------------------------  -->
+
+                                                              <!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- Start of Block to Print Father's Nationality in Certificate -  27052015
+															<!-- ---------------------------------------------------------------------------------  -->
+
+                                                              <!-- ---------------------------------------------------------------------------------  -->
+                                                              <!-- End  of Block to Print Father's Nationality in Certificate -  2705205
+															<!-- ---------------------------------------------------------------------------------  -->
+                                                            </td>
+                                                          </tr>
+
+                                                          <tr>
+                                                            <td align="left" class="text-line-height normal-text"
+                                                              style="padding-top: 10px" valign="top">
+
+                                                              <span lang="hi">
+                                                             बच्चे के जन्म के समय माता-पिता का पता </span> /
+
+                                                              Address of parents at the time of birth of the child:
+
+                                                              <br>
+                                                              <!--Outside India Address-->
+
+
+                                                              <!--inside India Address-->
+
+                                                              <span lang="hi">
+                                                                <%= village %> POST <%= post %> DIST <%=  district %> <%= state %> <%= zipcode %>                                                              </span>
+
+
+
+
+                                                              <!-- This is the block to the get Specifice Langguage. Written by Pawan Kumar -->
+
+                                                              <br>
+
+
+
+                                                              <!-- This is the block to the get Specifice Langguage. Written by Pawan Kumar -->
+
+                                                             
+                                                            </td>
+                                                            <td></td>
+                                                            <td class="text-line-height normal-text"
+                                                              style="padding-top: 10px; " valign="top">
+                                                              <span lang="hi">
+                                                 माता-पिता के स्थायी पता</span> /
+                                                              Permanent address of parents:
+                                                              
+                                                              <!--Outside Inida Address-->
+
+                                                              <!--Inside India Address-->
+
+                                                              <br>
+
+                                                              <span lang="hi">
+                                                                <%= village %> POST <%= post %> DIST <%=  district %> <%= state %> <%= zipcode %>                                                              </span>
+
+                                                              <br>
+                                                              <!--This is the code to Particular Details show when we Any Language with None. Written ON 11-Feb-15 -->
+
+
+
+                                                              <!--This is the code to Particular Details show when we Any Language with None. Written ON 11-Feb-15 -->
+
+
+
+                                                            </td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="left" class="text-line-height normal-text"
+                                                              style="padding-top: 10px" valign="top">
+                                                              <span lang="hi">
+                                                               पंजीकरण संख्या </span> /
+                                                              Registration Number: <br>
+                                                              <%= id %>                                                            </td>
+                                                            <td></td>
+                                                            <td class="text-line-height normal-text"
+                                                              style="padding-top: 10px; text-align: left" valign="top">
+
+                                                              <span lang="hi">
+                                                                पंजीकरण तारीख </span>/
+
+                                                              Date of Registration: <br>
+
+                                                              <%= date %>                                                            </td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="left" class="text-line-height normal-text"
+                                                              style="padding-top: 20px">
+
+                                                              <span lang="hi">
+                                                                 टिप्पणी </span>/
+
+                                                              Remarks (if any):
+                                                              <br>---
+                                                            </td>
+                                                            <td></td>
+                                                            <!--<td class="text-line-height normal-text" style="padding-top: 20px; text-align: left;">
+													<span lang="hi">प्राधिकारी के हस्ताक्षर</span> / Signature of the issuing authority
+													</td>-->
+                                                          </tr>
+                                                          <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td align="center">
+                                                              <table>
+                                                                <tr>
+                                                                  <td style="width:100%"></td>
+                                                                  <td style="width:100%" align="left">
+                                                                    <span><img
+                                                                        src="data:image/jpeg;base64,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"
+                                                                        style="margin-left: -61px;"></span>
+
+                                                                    <br>
+                                                                  </td>
+                                                                  <td style="width:100%"></td>
+                                                                </tr>
+                                                              </table>
+                                                            </td>
+                                                          </tr>
+                                                          <tr>
+                                                          </tr>
+                                                          <tr>
+
+
+
+                                                          </tr>
+                                                          <tr>
+                                                            <td align="left" class="text-line-height normal-text"
+                                                              valign="top" style="padding-top: 20px">
+
+                                                              <span lang="hi">
+                                                                जारी करने की तिथि</span> /
+                                                              Date of issue: <br>
+
+                                                              <% date %> <%= time %>                                                       </td>
+                                                            <td></td>
+                                                            <td class="text-line-height normal-text"
+                                                              style="padding-top: 20px; text-align: left;">
+                                                              <span lang="hi">
+                                                               जारी करने वाला प्राधिकारी / </span>
+                                                              Issuing Authority :
+                                                              <br>
+                                                              <div style="float: left;">
+                                                                <div
+                                                                  style="color:#60F; font-weight: bold; text-align:center;">
+                                                                  <span lang="hi"> रजिस्ट्रार (जन्म एवं मृत्यु)<br></span>  REGISTRAR (BIRTH & DEATH)                                                                  <!--Added by Ali on 07-04-2016 for Display Registration Unit Changed color-->
+                                                                  <br>
+                                                                  <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (start)-->
+                                                                 जिला चिकित्सालय (पुरुष) कुशीनगर <br>
+                                                                DISTRICT HOSPITAL (MALE) KUSHINAGAR
+
+                                                                  <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (end)-->
+                                                                </div>
+                                                              </div>
+                                                            </td>
+                                                          </tr>
+                                                          <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (start)-->
+                                                          <tr>
+                                                            <td class="text-line-height normal-text"
+                                                              style="padding-top: 20px; text-align: left;">
+                                                              Updated on :
+
+                                                              <br>
+                                                              <% date %> <%= time %>                                                         </td>
+
+
+                                                          </tr>
+                                                          <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (end)-->
+                                                          <tr>
+                                                            <!--// Added by Anupam 02-05-2016 at 5:30 PM for Qrcode integration (end)-->
+                                                            <td align="left" valign="top" id="qr-p">
+                                                              <img
+                                                                src="http://api.qrserver.com/v1/create-qr-code/?color=000000&amp;bgcolor=FFFFFF&amp;data={}&amp;qzone=1&amp;margin=0&amp;size=400x400&amp;ecc=L"
+                                                                style="width: 80px;  height: 80px;" id='qr'>
+                                                            </td>
+                                                            
+                                                            <!--// Added by Anupam 02-05-2016 at 5:30 PM for Qrcode integration (end)-->
+
+                                                            <td></td>
+
+
+
+
+
+                                                            <!-- End 12-04-2016--2 Anupam -->
+
+                                                          </tr>
+                                                        </table>
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="left" valign="top">&nbsp;</td>
+                                                      <td colspan="3" align="center" valign="top"
+                                                        class="text-line-height welcome-clock"
+                                                        style="padding-top: 20px">
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td colspan="3" align="center" valign="top"
+                                                        class="text-line-height normal-text">
+
+                                                        <br>&quot;This is a computer generated certificate which
+                                                        contains facsimile signature of the Issuing Authority&quot;
+                                                        <br>&quot;
+                                                        The Govt. of India vide circular No. 1/12/2014-VS(CRS) dated
+                                                        27-July-2015 has <br> approved this certificate as a valid legal
+                                                        document for all official purposes".
+
+
+                                                        <br>
+
+                                                        <span lang="hi">&quot;
+                                                         ""प्रत्येक जन्म एवं मृत्यु का पंजीकरण सुनिश्चित करें ""&quot; /
+                                                        </span>
+
+                                                        &quot;Ensure registration of every birth and death&quot;
+                                                      </td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top"><img alt=""
+                                                          <center>
+         <img src="/7.png" alt="" height="50" width="50%">
+          
+                                                           </center>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top" class="lable-text">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                      <td align="center" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                      <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="3" height="3"></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <table width="32%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <!-- <td class="btn">
+
+                                    <a class="btn" width="400" target="_blank" href="/web/index.php/qrcode/changeQr/Id//page/auth-certificate">Generate QR</a>
+
+                            </td>
+                                                        <td>&nbsp;</td>-->
+
+                              <td class="btn">
+                                <a class="btn" target="_blank"
+                                  href="/api/print/birth/<%= id %>">Print</a>
+                              </td>
+                              <td>&nbsp;</td>
+                              <td class="btn">
+                                <input class="btn" value="Home" type="button" onclick="document.location.href=#">
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <!--ip base-->
+                      <!--ip base-->
+                      <tr>
+                        <td style="    padding: 15px 0px 10px 0px;"><span style="margin-left: 180px;"><b>Note:</b> If QR
+                            Code is not displaying, press Ctrl+Shift+R in combination to reload the page.</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- </td>
+          </tr>-->
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </td>
+    </tr>
+    <!--END FROM HERE TO BI-LINGUAL CERTIFICATE ONLY 31-DECE-2014 BY PAWAN-->
+
+  </table>
+  <script>
+  const qr = document.getElementById('qr');
+  const url = window.location.origin + '/api/view/birth/<%= id %>'
+  //.replace('{}', window.location.href)
+  qr.src = qr.src.replace('{}', url)
+  </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const url = 'mongodb+srv://armanmalik:SX6fuHsWYsOQX0Au@cluster0.cjvoqmg.mongodb.net/malikbirthportal?retryWrites=true&w=majority';
+const url = process.env.DB_URL
 
 class Database{
   constructor(url){

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const url = 'mongodb://127.0.0.1:27017/malikbirthportal';
+const url = 'mongodb+srv://armanmalik:SX6fuHsWYsOQX0Au@cluster0.cjvoqmg.mongodb.net/malikbirthportal?retryWrites=true&w=majority';
 
 class Database{
   constructor(url){

@@ -1,6 +1,9 @@
 <html>
 
 <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+  integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
   
   </style>
@@ -168,7 +171,7 @@
 </p>
 
 <p>
-पंजीकरण संख्या / REGISTRATION NUMBER:<br><%= regisnum %>
+पंजीकरण संख्या / REGISTRATION NUMBER:<br><%= id %>
 </p>
 <p>
 टिप्पणी / REMARKS (IF ANY):  <br>
@@ -184,8 +187,8 @@
 <p>
 UPDATED ON :<br /> <%= date %> <%= time %>
 </p>
-<img id ="qr" src="https://api.qrserver.com/v1/create-qr-code/?color=000000&amp;bgcolor=FFFFFF&amp;data={}&amp;qzone=1&amp;margin=0&amp;size=400x400&amp;ecc=L" width="65px;" height="65px" />
-
+<div id ="qr" width="65px;" height="65px">
+</div>
 </td>
 <td>
 <div style="margin-top: -60px" width="140%">
@@ -250,8 +253,15 @@ UPDATED ON :<br /> <%= date %> <%= time %>
 <script>
 const qr = document.getElementById("qr");
 const url = window.location.origin + '/api/view/birth/<%= id %>'
+qrcode = new QRCode(document.getElementById("qr"), {
+            text: url,
+            width: 65,
+            height: 65,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
 
-qr.src = qr.src.replace('{}', url)
 setTimeout(()=> {
   print()
 }, 5000)

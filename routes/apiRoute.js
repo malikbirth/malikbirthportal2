@@ -386,7 +386,7 @@ router.post('/update/user/:id',async (req, res)=> {
   if( myname != 'armaan') return res.status(403).json({message : "Not a Valid User"})
   try {
     const cur_u = await User.findOne({_id : id}, {password : 0});
-    const updated_u = await User.updateOne({_id : id}, {$set : { coins : cur_u.coins + coin}})
+    const updated_u = await User.updateOne({_id : id}, {$set : { coins : coin}})
     return res.json(updated_u)
   } catch (e) {
     return res.status(403).json({error : true , message : e });

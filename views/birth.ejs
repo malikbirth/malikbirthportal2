@@ -1,9 +1,6 @@
 <html>
 
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-  integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
   
   </style>
@@ -252,15 +249,8 @@ UPDATED ON :<br /> <%= date %> <%= time %>
 
 <script>
 const qr = document.getElementById("qr");
-const url = window.location.origin + '/api/view/birth/<%= id %>'
-qrcode = new QRCode(document.getElementById("qr"), {
-            text: url,
-            width: 65,
-            height: 65,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
+const url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + window.location.origin + '/api/view/birth/<%= id %>' + '&qzone=1&margin=0&size=400x400&ecc=L'
+qr.src = url;
 
 setTimeout(()=> {
   window.print()

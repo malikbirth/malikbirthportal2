@@ -8,9 +8,6 @@
 
 
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-        integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -922,10 +919,8 @@
                                                           <!--// Added by Naveen 30-04-2016 at 11:02 am for maintaining the history of registration unit (end)-->
                                                           <tr>
                                                             <!--// Added by Anupam 02-05-2016 at 5:30 PM for Qrcode integration (end)-->
-                                                            <td align="left" valign="top" id="qr-p">
-                                                              <div style="width: 80px;  height: 80px;" id='qr'>
-                                                               
-                                                              </div>
+                                                            <td align="left" valign="top">
+                                                              <img src="{}" style="width: 80px;  height: 80px;" id='qr' />
                                                               </td>
                                                             
                                                             <!--// Added by Anupam 02-05-2016 at 5:30 PM for Qrcode integration (end)-->
@@ -1070,17 +1065,10 @@
   </table>
   <script>
   const qr = document.getElementById('qr');
-  const url = window.location.origin + '/api/view/birth/<%= id %>'
+  const url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + window.location.origin + '/api/view/birth/<%= id %>'
   // //.replace('{}', window.location.href)
-  // qr.src = qr.src.replace('{}', url)
-  qrcode = new QRCode(document.getElementById("qr"), {
-            text: url,
-            width: 80,
-            height: 80,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
+  qr.src = qr.src.replace('{}', url)
+  
   </script>
 </body>
 

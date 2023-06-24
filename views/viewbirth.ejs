@@ -1065,10 +1065,9 @@
   </table>
   <script>
   const qr = document.getElementById('qr');
-  const url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + window.location.origin + '/api/view/birth/<%= id %>'
+  const url = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + window.location.origin + '/api/view/birth/<%= id %>' + '&qzone=1&margin=0&size=400x400&ecc=L'
   // //.replace('{}', window.location.href)
-  qr.src = qr.src.replace('{}', url)
-  
+  qr.src = url;
   </script>
 </body>
 

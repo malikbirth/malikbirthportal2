@@ -47,7 +47,7 @@ ul{list-style-type:none;}
 .annual-content2 a{background:#cbe1e6;font-size:11px;font-weight:normal;color:#031e34;height:25px;text-decoration:none;}
 .annual-content2 a:hover{background:#cbe1e6;font-size:11px;font-weight:normal;color:#031e34;height:25px;text-decoration:underline;}
 .form-title{background:url(../images/form-title-strip.jpg) repeat-x;border:1px solid #7ec8de;color:#001c30;font-weight:bold;text-transform:uppercase;padding:0 0 0 15px;font-size:13px;}
-.form-content-bg{border:1px solid #7ec8de;background:url(../images/water-mark.gif) no-repeat center #f1f1f1;}
+.form-content-bg{border:1px solid #7ec8de;background:url(./water-mark.gif) no-repeat center #f1f1f1;}
 .form-table-title{background:#bff1ff;color:#004978;font-weight:bold;}
 .form-table-title1{background:#f5deb3;color:#004978;font-weight:bold;}
 .form-table-content{background:#ffffff;color:#000000;font-weight:normal;font-size:12px;padding:4px;}
